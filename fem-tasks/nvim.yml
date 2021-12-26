@@ -1,0 +1,51 @@
+- name: Download Neovim appimage
+  shell: curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  tags:
+    - nvim
+- name: grand nvim permission
+  shell: chmod u+x nvim.appimage
+  tags:
+    - nvim
+- name: Download vim plugin manager
+  shell: sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  tags:
+    - nvim
+- name: install py-venv
+  apt: name=python3-venv
+  tags:
+    - nvim
+- name: install py-pip3
+  apt: name=python3-pip
+  tags:
+    - nvim
+- name: install pip neovim
+  pip: name=neovim
+  tags:
+    - nvim
+- name: install xclip
+  apt: name=xclip
+  tags:
+    - nvim
+- name: make .config dir
+  shell: mkdir /root/.config 
+  tags:
+    - nvim
+- name: clone git repo
+  ansible.builtin.git:
+    repo: 'https://github.com/pietow/neovim-init.vim.git'
+    dest: /root/.config/nvim
+  tags:
+    - nvim
+- name: Switch branch
+  shell: cd /root/.config/nvim && git checkout cleanPlusPlugins && cd ~ 
+  tags:
+    - nvim
+- name: install nvim plugins
+  shell: ./nvim.appimage --appimage-extract-and-run "+silent! PlugInstall!" +qall!
+  tags:
+    - nvim
+- name: Switch branch
+  shell: cd /root/.config/nvim && git checkout LSP-vim && cd ~ 
+  tags:
+    - nvim
+
