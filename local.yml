@@ -6,8 +6,8 @@
   - name: Update Apt
     become: true
     apt:
-      force_apt_get: true
-      update_cache: true
+      force_apt_get: false
+      update_cache: false
       state: present
     tags:
     - node
@@ -16,11 +16,14 @@
     - ssh
   tasks:
   # - include: tasks/ssh.yml
-  - name: Cloning .dotfiles
-    ansible.builtin.git:
-      repo: 'git@github.com:pietow/store-accecc-token.git'
-      dest: "{{ lookup('env', 'HOME') }}/myrepo"
-      accept_hostkey: yes
+  - include: tasks/git.yml
+  # - name: Cloning .dotfiles
+  #   ansible.builtin.git:
+  #     repo: 'git@github.com:pietow/store-accecc-token.git'
+  #     dest: "{{ lookup('env', 'HOME') }}/myrepo"
+  #     accept_hostkey: yes
+  #     force: yes
+  #     ssh_opts: "-o StrictHostKeyChecking=no"
   # - include: tasks/zsh.yml
   # - include: tasks/nvim.yml
   # - include: tasks/node.yml
