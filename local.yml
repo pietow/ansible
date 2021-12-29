@@ -1,0 +1,28 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+    - node
+    - zsh
+    - nvim
+    - ssh
+  tasks:
+  # - include: tasks/ssh.yml
+  - name: Cloning .dotfiles
+    ansible.builtin.git:
+      repo: 'git@github.com:pietow/store-accecc-token.git'
+      dest: "{{ lookup('env', 'HOME') }}/myrepo"
+      accept_hostkey: yes
+  # - include: tasks/zsh.yml
+  # - include: tasks/nvim.yml
+  # - include: tasks/node.yml
+
+

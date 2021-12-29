@@ -1,0 +1,41 @@
+- name: Install node
+  apt: 
+  name: ['nodejs', 'npm']
+  tags:
+    - node
+- name: Install n
+  npm: 
+    name: n
+    global: true
+  tags:
+    - node
+- name: n 16
+  shell: n 16
+  tags:
+    - node
+- name: Install typescript 
+  npm: 
+    name: typescript
+    global: true
+  tags:
+    - node
+- name: Install typescript-language-server
+  npm: 
+    name: typescript-language-server
+    global: true
+  tags:
+    - node
+- name: Install diagonstic-langserver
+  npm: 
+    name: diagnostic-languageserver
+    global: true
+  tags:
+    - node
+- name: Install npm neovim
+  npm: 
+    name: neovim
+    global: true
+  tags:
+    - node
+
+
