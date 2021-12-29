@@ -1,0 +1,53 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  vars_prompt:
+    - name: passphrase
+      prompt: "Enter your password ?"
+  tasks:
+  # - include: tasks/ssh.yml
+  # - name: Install expect
+  #   apt: name=expect
+  #   tags:
+  #     - git
+  - name:  add github fingerprint
+    ansible.builtin.shell: 
+      spawn git clone git@github.com:pietow/store-accecc-token.git
+
+      expect "*?fingerprint*"
+      send "{{ "yes" }}\n" 
+
+      expect "*?assphrase*"
+      send "{{ passphrase }}\n" 
+
+      exit 0
+    register: shell_result1
+    args:
+      executable: /usr/bin/expect
+    delegate_to: localhost
+    tags:
+      - git
+  - name: Run ssh-agent
+    shell: "exec ssh-agent {{ lookup('env', 'SHELL') }}"
+    tags:
+      - git
+  - name:  add Key to ssh agent
+    ansible.builtin.shell: |
+      set timeout 300 
+      spawn ssh-add 
+
+      expect "Enter passphrase for*"
+      send "{{ passphrase }}\n" 
+
+      exit 0
+    register: shell_result2
+    args:
+      executable: /usr/bin/expect
+    delegate_to: localhost
+    tags:
+      - git
+  - debug:
+      var: shell_result1.stdout_lines
+  - debug:
+      var: shell_result2.stdout_lines
