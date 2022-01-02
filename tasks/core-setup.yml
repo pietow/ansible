@@ -1,0 +1,13 @@
+- name: install software-properties-common
+  apt: name=software-properties-common
+  tags:
+    - core
+- name: install curl
+  apt: name=curl
+  tags:
+    - core
+- name: install build-essential
+  apt: name=build-essential
+  tags:
+    - core
+

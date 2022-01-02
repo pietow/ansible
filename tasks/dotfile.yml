@@ -1,0 +1,15 @@
+- name: Install stow
+  apt: name=stow
+  tags:
+    - stow
+- name: Download dotfiles
+  ansible.builtin.git:
+    repo: 'https://github.com/pietow/.dotfiles'
+    dest: "~/.dotfiles"
+  tags:
+    - stow
+- name: stow zsh
+  shell: cd ~/.dotfiles && stow zsh && cd ~
+  tags:
+    - stow
+
