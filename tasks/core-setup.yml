@@ -10,4 +10,8 @@
   apt: name=build-essential
   tags:
     - core
+- name: install window manager i3
+  apt: name=i3
+  tags:
+    - core
 
