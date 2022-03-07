@@ -27,17 +27,18 @@
   tags:
     - nvim
 - name: make .config dir
-  shell: mkdir /root/.config 
+  shell: mkdir ~/.config 
+  ignore_errors: yes
   tags:
     - nvim
 - name: clone git repo
   ansible.builtin.git:
     repo: 'https://github.com/pietow/neovim-init.vim.git'
-    dest: /root/.config/nvim
+    dest: ~/.config/nvim
   tags:
     - nvim
 - name: Switch branch
-  shell: cd /root/.config/nvim && git checkout cleanPlusPlugins && cd ~ 
+  shell: cd ~/.config/nvim && git checkout cleanPlusPlugins && cd ~ 
   tags:
     - nvim
 - name: install nvim plugins
@@ -45,7 +46,7 @@
   tags:
     - nvim
 - name: Switch branch
-  shell: cd /root/.config/nvim && git checkout LSP-vim && cd ~ 
+  shell: cd ~/.config/nvim && git checkout LSP-vim && cd ~ 
   tags:
     - nvim
 
