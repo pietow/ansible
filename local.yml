@@ -18,8 +18,8 @@
   # - include: tasks/core-setup.yml
   #  - include: tasks/ssh.yml
   # - include: tasks/zsh.yml
-   - include: tasks/nvim.yml
-  # - include: tasks/node.yml
+   # - include: tasks/nvim.yml
+  - include: tasks/node.yml
   # - include: tasks/dotfile.yml
   # - include: tasks/slack-setup.yml
   # - include: tasks/core-setup.yml
