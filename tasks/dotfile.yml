@@ -2,14 +2,20 @@
   apt: name=stow
   tags:
     - stow
-- name: Download dotfiles
-  ansible.builtin.git:
-    repo: 'https://github.com/pietow/.dotfiles'
-    dest: "~/.dotfiles"
+- name: Clone dotfiles
+  shell: sh -c 'git clone https://github.com/pietow/.dotfiles.git ~/.dotfiles'
+  tags:
+    - dotfile
+- name: remove zshrc
+  shell: rm ~/.zshrc
   tags:
     - stow
 - name: stow zsh
-  shell: cd ~/.dotfiles && stow zsh && cd ~
+  shell: cd ~/.dotfiles && stow -v zsh 
+  tags:
+    - stow
+- name: stow tmux
+  shell: cd ~/.dotfiles && stow -v tmux
   tags:
     - stow
 
