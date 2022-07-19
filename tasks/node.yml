@@ -37,5 +37,11 @@
     global: true
   tags:
     - node
+- name: Install eslint_d
+  npm: 
+    name: eslint_d
+    global: true
+  tags:
+    - node
 
 
