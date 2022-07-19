@@ -10,8 +10,20 @@
   apt: name=build-essential
   tags:
     - core
-- name: install window manager i3
-  apt: name=i3
+- name: install fzf
+  apt: name=fzf
   tags:
     - core
+- name: install unzip
+  apt: name=unzip
+  tags:
+    - core
+- name: Install rclone
+  shell: curl -fsSL https://rclone.org/install.sh
+  tags:
+    - core
+# - name: install window manager i3
+#   apt: name=i3
+#   tags:
+#     - core
 
