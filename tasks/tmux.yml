@@ -1,0 +1,16 @@
+- name: Install tmux
+  apt: name=tmux
+  tags:
+    - tmux
+- name: Install tmux-resurrect
+  shell: sh -c "git clone https://github.com/tmux-plugins/tmux-resurrect ~/clone/path" 
+  tags:
+    - tmux
+
+- name: Create directory
+  file:
+    path: /root/.tmux/tmp/tmux-0
+    state: directory
+    mode: '0755'
+  tags:
+    - tmux
