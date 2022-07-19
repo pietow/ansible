@@ -31,10 +31,14 @@
   ignore_errors: yes
   tags:
     - nvim
+# - name: clone git repo
+#   ansible.builtin.git:
+#     repo: 'https://github.com/pietow/neovim-init.vim.git'
+#     dest: ~/.config/nvim
+#   tags:
+#     - nvim
 - name: clone git repo
-  ansible.builtin.git:
-    repo: 'https://github.com/pietow/neovim-init.vim.git'
-    dest: ~/.config/nvim
+  shell: sh -c "git clone https://github.com/pietow/neovim-init.vim.git ~/.config/nvim"
   tags:
     - nvim
 - name: Switch branch
