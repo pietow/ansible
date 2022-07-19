@@ -1,21 +1,17 @@
 - name: Install stow
   apt: name=stow
   tags:
-    - stow
+    - dotfile
 - name: Clone dotfiles
   shell: sh -c 'git clone https://github.com/pietow/.dotfiles.git ~/.dotfiles'
   tags:
     - dotfile
-- name: remove zshrc
-  shell: rm ~/.zshrc
-  tags:
-    - stow
 - name: stow zsh
   shell: cd ~/.dotfiles && stow -v zsh 
   tags:
-    - stow
+    - dotfile
 - name: stow tmux
   shell: cd ~/.dotfiles && stow -v tmux
   tags:
-    - stow
+    - dotfile
 
