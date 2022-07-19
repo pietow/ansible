@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+sudo apt-get update
 ##Install ansible
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update -y 
