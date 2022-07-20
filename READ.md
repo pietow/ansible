@@ -7,4 +7,5 @@ ansible-playbook  local.yml --ask-vault-pass
 eval `ssh-agent -s`
 ssh-add ~/.ssh/id_ed25519
 sudo npm i -g eslint@^6.1.0 eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+tmux ls | grep -Po "^([0-9]{1,2}):" | sed 's/:$//' | xargs -n1 tmux kill-session -t
 
