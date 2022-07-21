@@ -7,4 +7,4 @@ decrypt key and ask for sudo
 
 or install everything:
 
-> ansible-playbook local.yml --tags "ssh" --ask-vault-pass --ask-become-pass
+> ansible-playbook local.yml --ask-vault-pass --ask-become-pass
