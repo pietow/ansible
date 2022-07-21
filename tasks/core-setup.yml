@@ -18,10 +18,10 @@
   apt: name=unzip
   tags:
     - core
-- name: Install rclone
-  shell: curl -fsSL https://rclone.org/install.sh | bash 
-  tags:
-    - core
+#- name: Install rclone
+#  shell: curl -fsSL https://rclone.org/install.sh | bash 
+#  tags:
+#    - core
 # - name: install window manager i3
 #   apt: name=i3
 #   tags:

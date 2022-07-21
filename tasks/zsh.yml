@@ -1,9 +1,15 @@
+- name: Prints two lines of messages, but only if there is an environment value set
+  ansible.builtin.debug:
+    msg:
+    - "check for right $HOME and $USER: {{ lookup('ansible.builtin.env', 'HOME') }} {{ lookup('ansible.builtin.env', 'USER') }}"
+  tags: zsh
 - name: Install zsh
   apt: name=zsh
   tags:
     - zsh
 - name: Change shell
-  shell: chsh -s 'which zsh'
+  shell: chsh -s 'which zsh'  
+  become: yes
   tags:
     - zsh
 - name: Install ohmyzsh
@@ -11,7 +17,7 @@
   tags:
     - zsh
 - name: Install zsh-syntax-highlighting
-  shell: sh -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+  shell: sh -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting"
   tags:
     - zsh
 - name: Install zsh-autosuggestions

@@ -1,9 +1,11 @@
 - name: Download Neovim appimage
   shell: curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  become: yes
   tags:
     - nvim
 - name: grand nvim permission
   shell: chmod u+x nvim.appimage
+  become: yes
   tags:
     - nvim
 - name: Download vim plugin manager
@@ -39,6 +41,7 @@
 #     - nvim
 - name: clone git repo
   shell: sh -c "git clone https://github.com/pietow/neovim-init.vim.git ~/.config/nvim"
+  ignore_errors: yes
   tags:
     - nvim
 - name: Switch branch
@@ -47,6 +50,7 @@
     - nvim
 - name: install nvim plugins
   shell: ./nvim.appimage --appimage-extract-and-run "+silent! PlugInstall!" +qall!
+  become: yes
   tags:
     - nvim
 - name: Switch branch
