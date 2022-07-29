@@ -14,10 +14,12 @@
     - nvim
 - name: install py-venv
   apt: name=python3-venv
+  become: yes
   tags:
     - nvim
 - name: install py-pip3
   apt: name=python3-pip
+  become: yes
   tags:
     - nvim
 - name: install pip neovim
@@ -26,6 +28,7 @@
     - nvim
 - name: install xclip
   apt: name=xclip
+  become: yes
   tags:
     - nvim
 - name: make .config dir

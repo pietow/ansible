@@ -8,14 +8,17 @@
     - core
 - name: install build-essential
   apt: name=build-essential
+  become: yes
   tags:
     - core
 - name: install fzf
   apt: name=fzf
+  become: yes
   tags:
     - core
 - name: install unzip
   apt: name=unzip
+  become: yes
   tags:
     - core
 #- name: Install rclone

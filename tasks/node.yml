@@ -1,46 +1,54 @@
 - name: Install node
   apt: 
     name: ['nodejs', 'npm']
+  become: yes
   tags:
     - node
 - name: Install n
   npm: 
     name: n
     global: true
+  become: yes
   tags:
     - node
 - name: n 16
   shell: n 16
+  become: yes
   tags:
     - node
 - name: Install typescript 
   npm: 
     name: typescript
     global: true
+  become: yes
   tags:
     - node
 - name: Install typescript-language-server
   npm: 
     name: typescript-language-server
     global: true
+  become: yes
   tags:
     - node
 - name: Install diagonstic-langserver
   npm: 
     name: diagnostic-languageserver
     global: true
+  become: yes
   tags:
     - node
 - name: Install npm neovim
   npm: 
     name: neovim
     global: true
+  become: yes
   tags:
     - node
 - name: Install eslint_d
   npm: 
     name: eslint_d
     global: true
+  become: yes
   tags:
     - node
 

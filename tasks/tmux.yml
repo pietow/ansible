@@ -1,5 +1,6 @@
 - name: Install tmux
   apt: name=tmux
+  become: yes
   tags:
     - tmux
 - name: Install tmux-resurrect
