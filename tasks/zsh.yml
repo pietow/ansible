@@ -8,13 +8,18 @@
   become: yes
   tags:
     - zsh
-- name: Change shell
-  shell: chsh -s 'which zsh'  
+- name: change pam auth
+  shell: sed -i 's/required   pam_shells.so/sufficient   pam_shells.so/' /etc/pam.d/chsh
   become: yes
+  tags:
+    - zsh
+- name: Change shell
+  shell: chsh -s $(which zsh) $(whoami)
   tags:
     - zsh
 - name: Install ohmyzsh
   shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ignore_errors: yes
   tags:
     - zsh
 - name: Install zsh-syntax-highlighting
